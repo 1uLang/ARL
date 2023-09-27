@@ -35,7 +35,7 @@ class ARLStatFingerprint(ARLResource):
             data["items"][i]['targets'] = []
             for site in sites:
                 for finger in site["finger"]:
-                    if finger["name"] == item["name"]:
+                    if finger["name"].lower() == item["name"].lower():
                         data["items"][i]['targets'].append(site["site"])
                         continue
         return data
