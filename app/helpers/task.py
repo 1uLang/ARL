@@ -44,7 +44,7 @@ def get_ip_domain_list(target):
     return ip_list, domain_list
 
 
-def build_task_data(task_name, task_target, task_type, task_tag, options):
+def build_task_data(task_name, task_target, task_type, task_tag,task_group, options):
 
     # 检查是不是IP ,域名任务等
     avail_task_type = [TaskType.IP, TaskType.DOMAIN, TaskType.RISK_CRUISING]
@@ -74,7 +74,8 @@ def build_task_data(task_name, task_target, task_type, task_tag, options):
     task_data = {
         'name': task_name,
         'target': task_target,
-        'start_time': '-',
+        'group': task_group,
+        'start_time': utils.curr_date(),
         'status': TaskStatus.WAITING,
         'type': task_type,
         "task_tag": task_tag,
@@ -146,7 +147,7 @@ def submit_task(task_data):
 
 
 # 直接根据目标下发任务
-def submit_task_task(target, name, options):
+def submit_task_task(target, name, group, options):
     task_data_list = []
 
     ip_list, domain_list = get_ip_domain_list(target)
@@ -154,7 +155,7 @@ def submit_task_task(target, name, options):
     if ip_list:
         ip_target = " ".join(ip_list)
         task_data = build_task_data(task_name=name, task_target=ip_target,
-                                    task_type=TaskType.IP, task_tag=TaskTag.TASK,
+                                    task_type=TaskType.IP, task_tag=TaskTag.TASK, task_group=group,
                                     options=options)
 
         task_data = submit_task(task_data)
@@ -163,7 +164,7 @@ def submit_task_task(target, name, options):
     if domain_list:
         for domain_target in domain_list:
             task_data = build_task_data(task_name=name, task_target=domain_target,
-                                        task_type=TaskType.DOMAIN, task_tag=TaskTag.TASK,
+                                        task_type=TaskType.DOMAIN, task_tag=TaskTag.TASK, task_group=group,
                                         options=options)
             task_data = submit_task(task_data)
             task_data_list.append(task_data)
