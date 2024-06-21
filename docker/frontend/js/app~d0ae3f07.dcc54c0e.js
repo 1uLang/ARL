@@ -782,7 +782,7 @@
                         name: "fade-transform",
                         mode: "out-in"
                     }
-                }, [e("router-view", {key: this.activeDate})], 1)], 1), e("p", {staticClass: "copy-right"}, [this._v(" Powered by TCC(Tophant Competence Center) ARL 2.5.5 ")])], 1)], 1)
+                }, [e("router-view", {key: this.activeDate})], 1)], 1)], 1)], 1)
             }), [], !1, null, "3ea98b68", null).exports), w = n("1aab");
         s.a.use(o.a);
         var v = [{
