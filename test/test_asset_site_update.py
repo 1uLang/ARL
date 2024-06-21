@@ -18,7 +18,7 @@ def insert_task_data():
     task_data = {
         'name': "测试资产分组更新",
         'target': "资产站点更新",
-        'start_time': '-',
+        'start_time': utils.curr_date(),
         'status': TaskStatus.WAITING,
         'type': TaskType.ASSET_SITE_UPDATE,
         "task_tag": TaskType.ASSET_SITE_UPDATE,

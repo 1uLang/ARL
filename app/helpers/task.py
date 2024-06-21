@@ -190,7 +190,7 @@ def submit_add_asset_site_task(task_name: str, target: list, options: dict) -> d
     task_data = {
         'name': task_name,
         'target': "站点：{}".format(len(target)),
-        'start_time': '-',
+        'start_time': utils.curr_date(),
         'status': TaskStatus.WAITING,
         'type': TaskType.ASSET_SITE_ADD,
         "task_tag": TaskTag.RISK_CRUISING,
